@@ -1,0 +1,41 @@
+<div class="leads-container">
+  <h2>Leads sem Vendedor</h2>
+  <h3 style="color: green;">{{ triggerMessage }} </h3>
+  <button (click)="startFunction()">Iniciar Disparos</button> 
+  
+  <div style="display: ruby-text; align-items: center;">
+    <button class="accept-all-button" (click)="acceptAllLeads()">Aceitar Todos os Leads</button>
+    <span id="relogio" class="clock">
+    </span>
+  </div>
+
+  
+  <table class="leads-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Aceitar</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Aceito</th>
+      <th>Classe</th>
+      <th>Remover da lista</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lead of leads" [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Id }}</td>
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+        <button class="accept-button" (click)="acceptLead(lead.Id)">Aceitar</button>
+      </td>
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Nome }}</td>
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Email }}</td>
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Ok }}</td>
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Classe }}</td>
+      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+        <button class="remove-button" (click)="removeLead(lead.Id)">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
