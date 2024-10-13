@@ -1,41 +1,50 @@
-const fetch = require('node-fetch');
+exports.handler = async function (event, context) {
+  const fetch = await import('node-fetch').then(mod => mod.default); // Importação dinâmica do fetch
+  const url = 'https://primorossi.directlead.com.br/Acesso/Entrar';
 
-exports.handler = async function(event, context) {
-  if (event.httpMethod !== 'POST') {
+  let cpf, senha;
+
+  // Tenta fazer o parse do corpo da requisição
+  try {
+    const parsedBody = JSON.parse(event.body);  // Recebe o CPF e senha do corpo da requisição
+    cpf = parsedBody.cpf;
+    senha = parsedBody.senha;
+  } catch (error) {
     return {
-      statusCode: 405,
-      body: JSON.stringify({ message: 'Method Not Allowed' }),
+      statusCode: 400,  // Retorna erro 400 se o corpo da requisição for inválido
+      body: JSON.stringify({ error: 'Invalid JSON format in request body' })
     };
   }
 
-  const formData = new URLSearchParams(event.body);
-
   try {
-    const response = await fetch('https://primorossi.directlead.com.br/Acesso/Entrar', {
+    // Faz a requisição POST com os dados do CPF e senha
+    const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formData,
+      body: new URLSearchParams({ cpf, senha }),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
 
-    if (!response.ok) {
+    // Tenta fazer o parse da resposta como JSON
+    try {
+      const data = JSON.parse(responseText);
       return {
-        statusCode: response.status,
-        body: JSON.stringify(data),
+        statusCode: 200,
+        body: JSON.stringify(data)
+      };
+    } catch (error) {
+      // Se a resposta não for JSON válido, retorna o texto bruto
+      return {
+        statusCode: 200,
+        body: responseText
       };
     }
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data),
-    };
   } catch (error) {
+    // Retorna um erro 500 se a requisição falhar
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Internal Server Error', error }),
+      body: JSON.stringify({ error: error.message })
     };
   }
 };

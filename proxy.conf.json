@@ -1,12 +1,7 @@
 {
-    "/api": {
-      "target": "https://primorossi.directlead.com.br",
-      "secure": false,
-      "changeOrigin": true,
-      "logLevel": "debug",
-      "pathRewrite": {
-        "^/api": ""
-      }
-    }
+  "/.netlify/functions": {
+    "target": "http://localhost:8888",
+    "secure": false,
+    "logLevel": "debug"
   }
-  
+}

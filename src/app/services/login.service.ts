@@ -1,26 +1,26 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  private apiUrl = 'https://primorossi.directlead.com.br/Acesso/Entrar';
+  private apiUrl = '/.netlify/functions/login'; // URL da sua função Lambda
 
   constructor(private http: HttpClient) {}
 
   login(cpf: string, senha: string): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('cpf', cpf);
-    formData.append('senha', senha);
-    // return this.http.post<any>('/api/login', formData);
-    // var result = this.http.post<any>('https://cors-anywhere.herokuapp.com/https://primorossi.directlead.com.br/Acesso/Entrar', formData);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json' // Altera para application/json
+    });
 
+    // Constrói o corpo como um objeto JSON
+    const body = JSON.stringify({
+      cpf: cpf,
+      senha: senha
+    });
 
-    var result =  this.http.post<any>('/api/Acesso/Entrar', formData);
-    console.log(result)
-    return result
+    return this.http.post(this.apiUrl, body, { headers }); // Envia o corpo como JSON
   }
 }

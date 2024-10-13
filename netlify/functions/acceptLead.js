@@ -1,19 +1,18 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 
-exports.handler = async function(event, context) {
-  const id = event.queryStringParameters.id;
+exports.handler = async (event) => {
+  const { id } = JSON.parse(event.body);
 
-  const response = await fetch(`https://primorossi.directlead.com.br/Leads/Aceitar?id=${id}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-  });
-
-  const data = await response.json();
-  return {
-    statusCode: 200,
-    body: JSON.stringify(data),
-  };
+  try {
+    const response = await axios.post(`https://primorossi.directlead.com.br/Leads/Aceitar?id=${id}`, {}, { withCredentials: true });
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response.data),
+    };
+  } catch (error) {
+    return {
+      statusCode: error.response ? error.response.status : 500,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
 };

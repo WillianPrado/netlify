@@ -1,4 +1,15 @@
+[functions]
+  directory = "netlify/functions"
+
+
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/api/Leads/LeadSemVendedor"
+  to = "https://primorossi.directlead.com.br/Leads/LeadSemVendedor"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/Leads/Aceitar"
+  to = "https://primorossi.directlead.com.br/Leads/Aceitar"
+  status = 200
+  force = true

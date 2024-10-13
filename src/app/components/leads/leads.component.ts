@@ -11,7 +11,7 @@ export class LeadsComponent implements OnInit {
   leads: any[] = [];
   triggerMessage : string = ''
 
-  constructor(private leadsService: LeadsService,private loginService: LoginService,private renderer: Renderer2) {}
+  constructor(private leadsService: LeadsService,private  loginService: LoginService,private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.atualizarHorario();
