@@ -19,7 +19,7 @@ export class LoginService {
     var result = this.http.post<any>('https://cors-anywhere.herokuapp.com/https://primorossi.directlead.com.br/Acesso/Entrar', formData);
 
 
-    var result =  this.http.post<any>('/api/Acesso/Entrar', formData);
+    // var result =  this.http.post<any>('/api/Acesso/Entrar', formData);
     console.log(result)
     return result
   }
