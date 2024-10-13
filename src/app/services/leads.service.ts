@@ -6,21 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LeadsService {
-  private apiUrl = 'https://primorossi.directlead.com.br/Leads/LeadSemVendedor';
-  private acceptUrl = 'https://primorossi.directlead.com.br/Leads/Aceitar';
+  private apiUrl = '/.netlify/functions/getLeads'; // URL da sua função Lambda
+  private acceptUrl = '/.netlify/functions/aceitarLead'; // URL da função Lambda para aceitar leads
 
-
-
-  // Método para buscar os leads
   constructor(private http: HttpClient) {}
 
   // Método para buscar os leads
   getLeads(): Observable<any> {
-    return this.http.post<any>('/api/Leads/LeadSemVendedor', { withCredentials: true });
+    return this.http.get<any>(this.apiUrl, { withCredentials: true });
   }
 
-  // Método para aceitar um lead com base no ID
+  // Método para aceitar um lead
   acceptLead(id: number): Observable<any> {
-    return this.http.post<any>(`/api/Leads/Aceitar?id=${id}`, {}, { withCredentials: true });
+    return this.http.post<any>(this.acceptUrl, { id }, { withCredentials: true });
   }
 }

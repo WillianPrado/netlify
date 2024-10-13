@@ -1,16 +1,34 @@
-const axios = require('axios');
+exports.handler = async function (event, context) {
+  const fetch = await import('node-fetch').then(mod => mod.default);
+  const url = 'https://primorossi.directlead.com.br/Leads/LeadSemVendedor';
 
-exports.handler = async () => {
   try {
-    const response = await axios.post('https://primorossi.directlead.com.br/Leads/LeadSemVendedor', { withCredentials: true });
-    return {
-      statusCode: 200,
-      body: JSON.stringify(response.data),
-    };
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'authority': 'primorossi.directlead.com.br',
+        'cookie': event.headers.cookie || '', // Captura o cookie enviado
+      }
+    });
+
+    const responseText = await response.text();
+
+    try {
+      const data = JSON.parse(responseText);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(data)
+      };
+    } catch (error) {
+      return {
+        statusCode: 200,
+        body: responseText
+      };
+    }
   } catch (error) {
     return {
-      statusCode: error.response ? error.response.status : 500,
-      body: JSON.stringify({ error: error.message }),
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message })
     };
   }
 };
