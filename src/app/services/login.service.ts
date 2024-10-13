@@ -16,10 +16,10 @@ export class LoginService {
     formData.append('cpf', cpf);
     formData.append('senha', senha);
     // return this.http.post<any>('/api/login', formData);
-    var result = this.http.post<any>('https://cors-anywhere.herokuapp.com/https://primorossi.directlead.com.br/Acesso/Entrar', formData);
+    // var result = this.http.post<any>('https://cors-anywhere.herokuapp.com/https://primorossi.directlead.com.br/Acesso/Entrar', formData);
 
 
-    // var result =  this.http.post<any>('/api/Acesso/Entrar', formData);
+    var result =  this.http.post<any>('/api/Acesso/Entrar', formData);
     console.log(result)
     return result
   }
