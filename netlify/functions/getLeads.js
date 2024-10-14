@@ -12,7 +12,7 @@ exports.handler = async function (event, context) {
       },
       withCredentials: true
     });
-
+ 
     return {
       statusCode: 200,
       body: JSON.stringify(response.data)
