@@ -25,69 +25,69 @@ export class LeadsComponent implements OnInit {
   }
   private intervalId: any;
   getLeads(): void {
-      this.leadsService.getLeads().subscribe(
-      (response) => {
-        console.log('Leads obtidos com sucesso:', response);
-        this.leads = response; // Armazena os leads recebidos
-      },
-      (error) => {
-        console.error('Erro ao obter os leads:', error);
-      }
-    );
-    // this.leads = 
-    // [
-    //   {
-    //       "Id": 778149,
-    //       "Nome": "WANDERSON JOSE DA SILVA",
-    //       "Email": "sivawanderson516@gmail.com",
-    //       "StatusDescricao": null,
-    //       "StatusDescricaoHtml": null,
-    //       "DataCadastro": "/Date(1728160502073)/",
-    //       "TarefaPendente": null,
-    //       "UltimaTarefa": null,
-    //       "UltimaTarefaExecutada": null,
-    //       "DataOrdenacao": "/Date(-62135589600000)/",
-    //       "TipoOrdenacao": 0,
-    //       "StatusOrdem": 0,
-    //       "Qualificacao": null,
-    //       "EmailCamuflado": "si*****16@gmail.com",
-    //       "Classe": "quente"
+    //   this.leadsService.getLeads().subscribe(
+    //   (response) => {
+    //     console.log('Leads obtidos com sucesso:', response);
+    //     this.leads = response; // Armazena os leads recebidos
     //   },
-    //   {
-    //       "Id": 778152,
-    //       "Nome": "JOÃO CARLOS PEREIRA",
-    //       "Email": "joao.pereira@gmail.com",
-    //       "StatusDescricao": null,
-    //       "StatusDescricaoHtml": null,
-    //       "DataCadastro": "/Date(1728160502084)/",
-    //       "TarefaPendente": null,
-    //       "UltimaTarefa": null,
-    //       "UltimaTarefaExecutada": null,
-    //       "DataOrdenacao": "/Date(-62135589600000)/",
-    //       "TipoOrdenacao": 0,
-    //       "StatusOrdem": 0,
-    //       "Qualificacao": null,
-    //       "EmailCamuflado": "jo*****ra@gmail.com",
-    //       "Classe": "morno"
-    //   },
-    //   {
-    //       "Id": 778153,
-    //       "Nome": "MARIA SILVA DE SOUZA",
-    //       "Email": "maria.souza@gmail.com",
-    //       "StatusDescricao": null,
-    //       "StatusDescricaoHtml": null,
-    //       "DataCadastro": "/Date(1728160502095)/",
-    //       "TarefaPendente": null,
-    //       "UltimaTarefa": null,
-    //       "UltimaTarefaExecutada": null,
-    //       "DataOrdenacao": "/Date(-62135589600000)/",
-    //       "TipoOrdenacao": 0,
-    //       "StatusOrdem": 0,
-    //       "Qualificacao": null,
-    //       "EmailCamuflado": "ma*****za@gmail.com",
-    //       "Classe": "frio"
+    //   (error) => {
+    //     console.error('Erro ao obter os leads:', error);
     //   }
-    // ]
+    // );
+    this.leads = 
+    [
+      {
+          "Id": 778149,
+          "Nome": "WANDERSON JOSE DA SILVA",
+          "Email": "sivawanderson516@gmail.com",
+          "StatusDescricao": null,
+          "StatusDescricaoHtml": null,
+          "DataCadastro": "/Date(1728160502073)/",
+          "TarefaPendente": null,
+          "UltimaTarefa": null,
+          "UltimaTarefaExecutada": null,
+          "DataOrdenacao": "/Date(-62135589600000)/",
+          "TipoOrdenacao": 0,
+          "StatusOrdem": 0,
+          "Qualificacao": null,
+          "EmailCamuflado": "si*****16@gmail.com",
+          "Classe": "quente"
+      },
+      {
+          "Id": 778152,
+          "Nome": "JOÃO CARLOS PEREIRA",
+          "Email": "joao.pereira@gmail.com",
+          "StatusDescricao": null,
+          "StatusDescricaoHtml": null,
+          "DataCadastro": "/Date(1728160502084)/",
+          "TarefaPendente": null,
+          "UltimaTarefa": null,
+          "UltimaTarefaExecutada": null,
+          "DataOrdenacao": "/Date(-62135589600000)/",
+          "TipoOrdenacao": 0,
+          "StatusOrdem": 0,
+          "Qualificacao": null,
+          "EmailCamuflado": "jo*****ra@gmail.com",
+          "Classe": "morno"
+      },
+      {
+          "Id": 778153,
+          "Nome": "MARIA SILVA DE SOUZA",
+          "Email": "maria.souza@gmail.com",
+          "StatusDescricao": null,
+          "StatusDescricaoHtml": null,
+          "DataCadastro": "/Date(1728160502095)/",
+          "TarefaPendente": null,
+          "UltimaTarefa": null,
+          "UltimaTarefaExecutada": null,
+          "DataOrdenacao": "/Date(-62135589600000)/",
+          "TipoOrdenacao": 0,
+          "StatusOrdem": 0,
+          "Qualificacao": null,
+          "EmailCamuflado": "ma*****za@gmail.com",
+          "Classe": "frio"
+      }
+    ]
   }
 
   login(): void {
