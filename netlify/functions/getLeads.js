@@ -1,34 +1,26 @@
-exports.handler = async function (event, context) {
-  const fetch = await import('node-fetch').then(mod => mod.default);
-  const url = 'https://primorossi.directlead.com.br/Leads/LeadSemVendedor';
+const axios = require('axios');
 
+exports.handler = async function (event, context) {
   try {
-    const response = await fetch(url, {
-      method: 'GET',
+    const cookieHeader = event.headers['cookie']; // Obtém o cookie do cabeçalho da requisição
+
+    // Realiza a requisição para buscar os leads
+    const response = await axios.get('https://primorossi.directlead.com.br/Leads/LeadSemVendedor', {
       headers: {
-        'authority': 'primorossi.directlead.com.br',
-        'cookie': event.headers.cookie || '', // Captura o cookie enviado
-      }
+        'Cookie': cookieHeader, // Usa o cookie que foi passado na requisição
+        'Accept': 'application/json'
+      },
+      withCredentials: true
     });
 
-    const responseText = await response.text();
-
-    try {
-      const data = JSON.parse(responseText);
-      return {
-        statusCode: 200,
-        body: JSON.stringify(data)
-      };
-    } catch (error) {
-      return {
-        statusCode: 200,
-        body: responseText
-      };
-    }
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response.data)
+    };
   } catch (error) {
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: error.message })
+      statusCode: error.response?.status || 500,
+      body: JSON.stringify({ message: error.message })
     };
   }
 };
