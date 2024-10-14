@@ -7,7 +7,7 @@ exports.handler = async function (event, context) {
     // Realiza a requisição para buscar os leads
     const response = await axios.get('https://primorossi.directlead.com.br/Leads/LeadSemVendedor', {
       headers: {
-        'Cookie': cookieHeader, // Usa o cookie que foi passado na requisição
+        'Cookie': 'ASP.NET_SessionId=hs3qc1d2s1bqvb45vf15f3ls', // Usa o cookie que foi passado na requisição
         'Accept': 'application/json'
       },
       withCredentials: true
