@@ -11,7 +11,7 @@ export class LeadsComponent implements OnInit {
   leads: any[] = [];
   triggerMessage : string = ''
 
-  constructor(private leadsService: LeadsService,private  loginService: LoginService,private renderer: Renderer2) {}
+  constructor(private leadsService: LeadsService,private loginService: LoginService,private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.atualizarHorario();
@@ -24,6 +24,8 @@ export class LeadsComponent implements OnInit {
 
   }
   private intervalId: any;
+  public isAutomaticallyFetchingLeads: boolean = false;
+
   getLeads(): void {
       this.leadsService.getLeads().subscribe(
       (response) => {
@@ -172,10 +174,11 @@ export class LeadsComponent implements OnInit {
 
   startFunction() {
     if (!this.intervalId) { // Garante que só será iniciado uma vez
-      this.triggerMessage = "Função de desparo automatico ativo para cada 1 min"
+      this.isAutomaticallyFetchingLeads = true
+      this.triggerMessage = "Ativo para cada 15 segundos";
       this.intervalId = setInterval(() => {
-        this.dispararFuncao(); // Função que será disparada a cada minuto
-      }, 60000); // Dispara a cada 60.000ms (1 minuto)
+        this.dispararFuncao(); // Função que será disparada a cada 15 segundos
+      }, 15000); // Dispara a cada 15.000ms (15 segundos)
     }
   }
 
@@ -192,7 +195,7 @@ export class LeadsComponent implements OnInit {
     console.log('Função disparada a cada 1 minuto!' + horaBrasilia);
     this.getLeads() 
     this.acceptAllLeads();
-    this.triggerMessage = "Função de desparo automatico ativo a cada 1 min, ultimo disparo as: " + horaBrasilia
+    this.triggerMessage = "A cada 15 segundos, ultimo disparo as: " + horaBrasilia
     // Adicione aqui o que você quer que aconteça a cada minuto
   }
 

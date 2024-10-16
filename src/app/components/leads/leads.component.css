@@ -18,7 +18,28 @@
     color: #333;
     margin-bottom: 20px;
   }
+  .styled-button {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    padding: 15px 30px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito no texto */
+    border: none; /* Remove a borda */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer; /* Cursor de mãozinha ao passar sobre o botão */
+    transition: background-color 0.3s, transform 0.2s; /* Efeito de transição */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra ao redor */
+  }
   
+  .styled-button:hover {
+    background-color: #45a049; /* Cor ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de elevação */
+  }
+  
+  .styled-button:active {
+    transform: translateY(0); /* Remove o efeito de elevação ao clicar */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Sombra menor ao clicar */
+  }
   .accept-all-button {
     background-color: #4CAF50; /* Verde */
     color: white;

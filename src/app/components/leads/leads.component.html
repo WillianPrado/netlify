@@ -1,7 +1,8 @@
 <div class="leads-container">
   <h2>Leads sem Vendedor</h2>
+  <h2 *ngIf="isAutomaticallyFetchingLeads" style="color: green;">Disparo automatico ativo</h2>
   <h3 style="color: green;">{{ triggerMessage }} </h3>
-  <button (click)="startFunction()">Iniciar Disparos</button> 
+  <button class="styled-button"(click)="startFunction()">Iniciar Disparos</button> 
   
   <div style="display: ruby-text; align-items: center;">
     <button class="accept-all-button" (click)="acceptAllLeads()">Aceitar Todos os Leads</button>
