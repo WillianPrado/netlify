@@ -14,7 +14,7 @@ exports.handler = async function (event, context) {
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Cookie': 'ASP.NET_SessionId=hs3qc1d2s1bqvb45vf15f3ls' 
+          'Cookie': 'ASP.NET_SessionId=0yqldz11zinec1gjycoqctbw' 
         },
         withCredentials: true
       }
