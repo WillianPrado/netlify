@@ -175,10 +175,10 @@ export class LeadsComponent implements OnInit {
   startFunction() {
     if (!this.intervalId) { // Garante que só será iniciado uma vez
       this.isAutomaticallyFetchingLeads = true
-      this.triggerMessage = "Ativo para cada 15 segundos";
+      this.triggerMessage = "Ativo para cada 5 segundos";
       this.intervalId = setInterval(() => {
         this.dispararFuncao(); // Função que será disparada a cada 15 segundos
-      }, 15000); // Dispara a cada 15.000ms (15 segundos)
+      }, 5000); // Dispara a cada 5.000ms (5 segundos)
     }
   }
 
