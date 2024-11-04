@@ -183,7 +183,7 @@ export class LeadsComponent implements OnInit {
   }
 
   // Função que será disparada a cada minuto
-  dispararFuncao() {
+  async dispararFuncao() {
     const agora = new Date();
       const options: Intl.DateTimeFormatOptions = {
         timeZone: 'America/Sao_Paulo', // Define o fuso horário de Brasília
@@ -193,9 +193,10 @@ export class LeadsComponent implements OnInit {
       };
       const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(agora);
     console.log('Função disparada a cada 1 minuto!' + horaBrasilia);
-    this.getLeads() 
-    this.acceptAllLeads();
-    this.triggerMessage = "A cada 15 segundos, ultimo disparo as: " + horaBrasilia
+    await this.getLeads() 
+    await this.acceptAllLeads();
+    this.triggerMessage = "A cada 5 segundos, ultimo disparo as: " + horaBrasilia
+    this.leads = []
     // Adicione aqui o que você quer que aconteça a cada minuto
   }
 
