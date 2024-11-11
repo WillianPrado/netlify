@@ -3,13 +3,14 @@ import { LeadsService } from '../../services/leads.service';
 import { LoginService } from '../../services/login.service';
 
 @Component({
-  selector: 'app-leads',
-  templateUrl: './leads.component.html',
-  styleUrls: ['./leads.component.css']
+  selector: 'app-automatic-lead-capture',
+  templateUrl: './automatic-lead-capture.component.html',
+  styleUrls: ['./automatic-lead-capture.component.css']
 })
-export class LeadsComponent implements OnInit {
+export class AutomaticLeadCaptureComponent {
   leads: any[] = [];
   triggerMessage : string = ''
+  Error :  string = ''
 
   constructor(private leadsService: LeadsService,private loginService: LoginService,private renderer: Renderer2) {}
 
@@ -29,8 +30,14 @@ export class LeadsComponent implements OnInit {
   getLeads(): void {
       this.leadsService.getLeads().subscribe(
       (response) => {
-        console.log('Leads obtidos com sucesso:', response);
-        this.leads = response; // Armazena os leads recebidos
+        if (Array.isArray(response)) {
+          console.log('Response é uma lista.');
+          this.leads = response; // Armazena os leads recebidos
+        } else {
+          this.Error = "Erro, faça login"
+          this.stopFunction()
+          console.log('Response não é uma lista.');
+        }// Armazena os leads recebidos
       },
       (error) => {
         console.error('Erro ao obter os leads:', error);
@@ -129,7 +136,7 @@ export class LeadsComponent implements OnInit {
   }
   
   async acceptAllLeads(): Promise<void> {
-    const firstSevenLeadIds = this.leads.map(lead => lead.Id).slice(0, 10); // Coleta apenas os primeiros 7 IDs dos leads
+    const firstSevenLeadIds = this.leads.map(lead => lead.Id).slice(0, 8); // Coleta apenas os primeiros 7 IDs dos leads
     
     const acceptPromises = firstSevenLeadIds.map(id => 
       this.leadsService.acceptLead(id).toPromise()
@@ -141,6 +148,7 @@ export class LeadsComponent implements OnInit {
   
     results.forEach(result => {
         const lead = this.leads.find(l => l.Id === result.id);
+        debugger
         if ('result' in result && result.result?.message) {
           console.log(result.id +" "+result.result.message); 
         }
@@ -172,6 +180,43 @@ export class LeadsComponent implements OnInit {
     }, 1000); // Atualiza a cada segundo
   }
 
+  startFunction() {
+    if (!this.intervalId) { // Garante que só será iniciado uma vez
+      this.isAutomaticallyFetchingLeads = true
+      this.triggerMessage = "Ativo para cada 2 segundos";
+      this.intervalId = setInterval(() => {
+        this.dispararFuncao(); // Função que será disparada a cada 15 segundos
+      }, 2000); // Dispara a cada 5.000ms (5 segundos)
+    }
+  }
+  stopFunction() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId); // Para o intervalo
+      this.intervalId = null; // Redefine o intervalo para evitar múltiplas execuções
+      this.isAutomaticallyFetchingLeads = false;
+      this.triggerMessage = "Disparos automáticos parados";
+      console.log("Disparos automáticos foram interrompidos.");
+    }
+  }
+
+  // Função que será disparada a cada minuto
+  async dispararFuncao() {
+    const agora = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'America/Sao_Paulo', // Define o fuso horário de Brasília
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(agora);
+    console.log('Função disparada a cada 1 minuto!' + horaBrasilia);
+    await this.getLeads() 
+    await this.acceptAllLeads();
+    this.triggerMessage = "A cada 2 segundos, ultimo disparo as: " + horaBrasilia
+    this.leads = []
+    // Adicione aqui o que você quer que aconteça a cada minuto
+  }
+
   triggerAtSpecificTime(hour: number, minute: number, second: number, triggerType: string = '' ) {
     const now = new Date(); // Current date and time
     const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, second); // Target time
@@ -184,7 +229,7 @@ export class LeadsComponent implements OnInit {
         second: '2-digit'
       };
       const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(targetTime);
-      this.triggerMessage = "Captura de leads programada para as: " + horaBrasilia
+      // this.triggerMessage = "Captura de leads programada para as: " + horaBrasilia
     }
 
     let timeUntilTrigger = targetTime.getTime() - now.getTime(); // Calculate the remaining time in milliseconds

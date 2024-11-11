@@ -1,8 +1,7 @@
 <div class="leads-container">
-  <h2>Leads sem Vendedor</h2>
-  <h2 *ngIf="isAutomaticallyFetchingLeads" style="color: green;">Disparo automatico ativo</h2>
+  <h2>Disparo Programado</h2>
+  <h2 *ngIf="isAutomaticallyFetchingLeads" style="color: green;">Ativo</h2>
   <h3 style="color: green;">{{ triggerMessage }} </h3>
-  <button class="styled-button"(click)="startFunction()">Iniciar Disparos</button> 
   
   <div style="display: ruby-text; align-items: center;">
     <button class="accept-all-button" (click)="acceptAllLeads()">Aceitar Todos os Leads</button>
@@ -12,31 +11,31 @@
 
   
   <table class="leads-table">
-  <thead>
+    <thead>
     <tr>
-      <th>ID</th>
-      <th>Aceitar</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Aceito</th>
-      <th>Classe</th>
-      <th>Remover da lista</th>
+        <th>ID</th>
+        <th>Aceitar</th>
+        <th>Remover</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Aceito</th>
+        <th>Classe</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let lead of leads" [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Id }}</td>
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
-        <button class="accept-button" (click)="acceptLead(lead.Id)">Aceitar</button>
-      </td>
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Nome }}</td>
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Email }}</td>
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Ok }}</td>
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Classe }}</td>
-      <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
-        <button class="remove-button" (click)="removeLead(lead.Id)">Remover</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lead of leads" [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Id }}</td>
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+          <button class="accept-button" (click)="acceptLead(lead.Id)">Aceitar</button>
+          </td>
+          <button class="remove-button" (click)="removeLead(lead.Id)">Remover</button>
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Nome }}</td>
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Email }}</td>
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Ok }}</td>
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">{{ lead.Classe }}</td>
+          <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+          </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
