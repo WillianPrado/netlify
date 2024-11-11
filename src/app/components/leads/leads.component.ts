@@ -175,10 +175,10 @@ export class LeadsComponent implements OnInit {
   startFunction() {
     if (!this.intervalId) { // Garante que só será iniciado uma vez
       this.isAutomaticallyFetchingLeads = true
-      this.triggerMessage = "Ativo para cada 5 segundos";
+      this.triggerMessage = "Ativo para cada 2 segundos";
       this.intervalId = setInterval(() => {
         this.dispararFuncao(); // Função que será disparada a cada 15 segundos
-      }, 5000); // Dispara a cada 5.000ms (5 segundos)
+      }, 2000); // Dispara a cada 5.000ms (5 segundos)
     }
   }
 
@@ -195,7 +195,7 @@ export class LeadsComponent implements OnInit {
     console.log('Função disparada a cada 1 minuto!' + horaBrasilia);
     await this.getLeads() 
     await this.acceptAllLeads();
-    this.triggerMessage = "A cada 5 segundos, ultimo disparo as: " + horaBrasilia
+    this.triggerMessage = "A cada 2 segundos, ultimo disparo as: " + horaBrasilia
     this.leads = []
     // Adicione aqui o que você quer que aconteça a cada minuto
   }
