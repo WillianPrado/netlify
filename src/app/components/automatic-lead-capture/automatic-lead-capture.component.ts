@@ -11,6 +11,7 @@ export class AutomaticLeadCaptureComponent {
   leads: any[] = [];
   triggerMessage : string = ''
   Error :  string = ''
+  processedLeadIds: Set<number> = new Set(); 
 
   constructor(private leadsService: LeadsService,private loginService: LoginService,private renderer: Renderer2) {}
 
@@ -18,26 +19,27 @@ export class AutomaticLeadCaptureComponent {
     this.atualizarHorario();
     this.login()
     this.getLeads();
-    // this.triggerAtSpecificTime(6, 28, 59);
-
-    this.triggerAtSpecificTime(7, 58, 59, 'login');
-    this.triggerAtSpecificTime(7, 59, 58);
-
   }
+
   private intervalId: any;
   public isAutomaticallyFetchingLeads: boolean = false;
 
   getLeads(): void {
-      this.leadsService.getLeads().subscribe(
+    this.leadsService.getLeads().subscribe(
       (response) => {
         if (Array.isArray(response)) {
           console.log('Response é uma lista.');
-          this.leads = response; // Armazena os leads recebidos
+          // Atualiza a lista de leads, mas mantém o controle dos já processados
+          response.forEach(newLead => {
+            if (!this.leads.some(existingLead => existingLead.Id === newLead.Id)) {
+              this.leads.push(newLead);
+            }
+          });
         } else {
-          this.Error = "Erro, faça login"
-          this.stopFunction()
+          this.Error = "Erro, faça login";
+          this.login();
           console.log('Response não é uma lista.');
-        }// Armazena os leads recebidos
+        }
       },
       (error) => {
         console.error('Erro ao obter os leads:', error);
@@ -103,7 +105,7 @@ export class AutomaticLeadCaptureComponent {
     this.loginService.login('JOYCEFREITAS', 'Jvf@1985').subscribe(
       (response) => {
         console.log('Login realizado com sucesso', response);
-
+        this.Error = ''
         // // Checa se o login foi bem-sucedido e armazena os cookies/sessão
         // if (response.success) {
         //   document.cookie = `sessionToken=${response.token}; path=/;`;  // Defina o cookie
@@ -135,25 +137,22 @@ export class AutomaticLeadCaptureComponent {
     );
   }
   
-  async acceptAllLeads(): Promise<void> {
-    const firstSevenLeadIds = this.leads.map(lead => lead.Id).slice(0, 8); // Coleta apenas os primeiros 7 IDs dos leads
-    
-    const acceptPromises = firstSevenLeadIds.map(id => 
+  async acceptAllLeads(leads: any[]): Promise<void> {
+    const leadIds = leads.map(lead => lead.Id).slice(0, 8); // Limita aos primeiros 7 IDs
+  
+    const acceptPromises = leadIds.map(id => 
       this.leadsService.acceptLead(id).toPromise()
-        .then(result => ({ status: 'fulfilled', id, result: result }))
+        .then(result => ({ status: 'fulfilled', id, result }))
         .catch(error => ({ status: 'rejected', id, error }))
     );
   
-    var results = await Promise.all(acceptPromises);
+    const results = await Promise.all(acceptPromises);
   
     results.forEach(result => {
-        const lead = this.leads.find(l => l.Id === result.id);
-        debugger
-        if ('result' in result && result.result?.message) {
-          console.log(result.id +" "+result.result.message); 
-        }
-        if (lead && 'result' in result) {
-          lead.Ok = result.result?.Ok;  // Atualiza o valor de Ok
+      const lead = this.leads.find(l => l.Id === result.id);
+      if (lead && 'result' in result && result.result?.message) {
+        console.log(result.id + " " + result.result.message); 
+        lead.Ok = result.result?.Ok;  // Atualiza o valor de Ok
       }
     });
   }
@@ -202,84 +201,29 @@ export class AutomaticLeadCaptureComponent {
   // Função que será disparada a cada minuto
   async dispararFuncao() {
     const agora = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo', // Define o fuso horário de Brasília
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(agora);
-    console.log('Função disparada a cada 1 minuto!' + horaBrasilia);
-    await this.getLeads() 
-    await this.acceptAllLeads();
-    this.triggerMessage = "A cada 2 segundos, ultimo disparo as: " + horaBrasilia
-    this.leads = []
-    // Adicione aqui o que você quer que aconteça a cada minuto
-  }
-
-  triggerAtSpecificTime(hour: number, minute: number, second: number, triggerType: string = '' ) {
-    const now = new Date(); // Current date and time
-    const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, second); // Target time
-    console.log("preparado para o desparo as: " + targetTime)
-    if (triggerType != 'login'){
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo', // Define o fuso horário de Brasília
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(targetTime);
-      // this.triggerMessage = "Captura de leads programada para as: " + horaBrasilia
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'America/Sao_Paulo',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+    const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(agora);
+  
+    await this.getLeads(); // Atualiza this.leads
+  
+    // Filtra apenas os leads que ainda não foram processados
+    const novosLeads = this.leads.filter(lead => !this.processedLeadIds.has(lead.Id));
+  
+    // Aceita apenas os novos leads
+    if (novosLeads.length > 0) {
+      await this.acceptAllLeads(novosLeads);
     }
-
-    let timeUntilTrigger = targetTime.getTime() - now.getTime(); // Calculate the remaining time in milliseconds
-
-    // If the remaining time is negative, it means the target time has passed for today, so schedule it for tomorrow
-    if (timeUntilTrigger < 0) {
-      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, hour, minute, second);
-      timeUntilTrigger = tomorrow.getTime() - now.getTime();
-    }
-
-    console.log(`Trigger scheduled in ${timeUntilTrigger / 1000} seconds (${timeUntilTrigger} ms)`);
-    
-    setTimeout(() => {
-      if(triggerType == 'login'){
-        this.functionToTriggerLoginAtTime()
-      }else{
-        
-        this.functionToTriggerAtTime();
-
-      }
-       // Function to be triggered at the exact time
-    }, timeUntilTrigger);
+  
+    // Adiciona os IDs dos novos leads à lista de IDs processados
+    novosLeads.forEach(lead => this.processedLeadIds.add(lead.Id));
+  
+    this.triggerMessage = "A cada 2 segundos, último disparo às: " + horaBrasilia;
   }
-  functionToTriggerLoginAtTime() {
-    const agora = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo', // Define o fuso horário de Brasília
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(agora);
-    console.log('Function triggered at the specific time!');
-    console.log('Hora: ' + horaBrasilia)
-    this.login()
-    // Add here the logic you want to execute at the specific time
-  }
-  // Function that will be triggered at the specific time
-  functionToTriggerAtTime() {
-    const agora = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Sao_Paulo', // Define o fuso horário de Brasília
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      const horaBrasilia = new Intl.DateTimeFormat('pt-BR', options).format(agora);
-    console.log('Function triggered at the specific time!');
-    console.log('Hora: ' + horaBrasilia)
-    this.acceptAllLeads()
-    // Add here the logic you want to execute at the specific time
-  }
+  
+  
 }
