@@ -6,25 +6,53 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo */
   }
   
-  .custom-nav a {
-    color: white;
+  /* Responsivo para telas menores */
+  @media (max-width: 768px) {
+    .custom-nav {
+      flex-direction: column; /* Empilha os links verticalmente */
+      align-items: center; /* Centraliza os itens */
+      gap: 10px;
+    }
+    
+    .custom-nav a {
+      width: 90%; /* Faz os botões ocuparem quase toda a largura */
+      text-align: center; /* Centraliza o texto */
+      padding: 12px 0; /* Ajusta o espaçamento */
+    }
+  }
+  .lead-button {
+    color: #333; /* Cor escura para melhor contraste */
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
+    padding: 8px 14px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid #333; /* Borda escura para contraste */
+    transition: background-color 0.3s, transform 0.2s, color 0.3s;
   }
   
-  .custom-nav a:hover {
-    background-color: #45a049; /* Verde mais escuro ao passar o mouse */
-    transform: translateY(-3px); /* Efeito de elevação */
+  .lead-button:hover {
+    background-color: #333;
+    color: white;
+    transform: translateY(-2px);
   }
   
-  .custom-nav a:active {
-    transform: translateY(0); /* Remove o efeito de elevação ao clicar */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  .lead-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .lead-button {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
   }
   

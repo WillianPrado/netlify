@@ -127,4 +127,77 @@
   .remove-button:hover {
     background-color: #da0b0b; /* Azul mais escuro */
   }
-  
+
+  /* Container responsivo para garantir scroll em telas menores */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Garante rolagem horizontal se precisar */
+}
+
+/* Ajusta alinhamento dos botões */
+.actions-column {
+    white-space: nowrap;
+}
+
+/* Botão de Aceitar */
+.btn-accept {
+    background-color: #28a745; /* Verde para destaque */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 12px; /* Espaçamento entre os botões */
+    transition: 0.3s;
+}
+
+.btn-accept:hover {
+    background-color: #218838;
+}
+
+/* Botão de Remover */
+.btn-remove {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-remove:hover {
+    background-color: #c82333;
+}
+
+/* Ícones de status (Aceito e Rejeitado) */
+.accepted {
+    color: #28a745; /* Verde para aceitos */
+    font-weight: bold;
+}
+
+.rejected {
+    color: #dc3545; /* Vermelho para rejeitados */
+    font-weight: bold;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .responsive-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .actions-column {
+        text-align: center;
+    }
+
+    .btn-accept, .btn-remove {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
