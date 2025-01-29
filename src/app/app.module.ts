@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LeadsComponent } from './components/leads/leads.component';
 import { AutomaticLeadCaptureComponent } from './components/automatic-lead-capture/automatic-lead-capture.component';  
+import { CalcularLanceComponent } from './components/calcular-lance/calcular-lance.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AutomaticLeadCaptureComponent } from './components/automatic-lead-captu
     EventosComponent,
     LoginComponent,
     LeadsComponent,
-    AutomaticLeadCaptureComponent
+    AutomaticLeadCaptureComponent,
+    CalcularLanceComponent
   ],
   imports: [
     BrowserModule,

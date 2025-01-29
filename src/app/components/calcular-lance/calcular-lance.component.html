@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Calculadora de Lance Fixo</h2>
+    
+    <label for="valorFinal">Valor Final (após 30% de lance):</label>
+    <input 
+      type="number" 
+      id="valorFinal" 
+      [(ngModel)]="valorFinal"
+      (input)="calcularValorOriginal()" 
+      placeholder="Digite o valor final"
+    />
+  
+    <div *ngIf="valorOriginal !== null" class="resultado">
+      <p>O valor original seria: <strong>R$ {{ valorOriginal | number:'1.2-2' }}</strong></p>
+    </div>
+  </div>
+  
