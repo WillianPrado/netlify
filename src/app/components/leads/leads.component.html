@@ -17,23 +17,24 @@
                   <th>Ações</th>
                   <th>Nome</th>
                   <th>Email</th>
-                  <th>Aceito</th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let lead of leads" [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
                   <td class="actions-column">
                       <button class="btn-accept" (click)="acceptLead(lead.Id)">✔</button>
-                      <button class="btn-remove" (click)="removeLead(lead.Id)">✖</button>
+                      <button  class="btn-remove" (click)="removeLead(lead.Id)">✖</button>
+                      <button class="btn" (click)="acceptLead(lead.Id)"
+                        [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
+                            {{ lead.Ok === undefined ? '?' : ''}}
+                            {{ lead.Ok === true ? '✅' : (lead.Ok === false ? '❌' : '') }}
+                      </button>
                   </td>
                   <td>{{ lead.Nome }}</td>
-                  <td>{{ lead.Email }}</td>
-                  <td [ngClass]="{'accepted': lead.Ok === true, 'rejected': lead.Ok === false}">
-                      {{ lead.Ok === true ? '✅' : (lead.Ok === false ? '❌' : '') }}
-                  </td>
+                  <td>{{ lead.Email }}</td>                      
               </tr>
           </tbody>
     </table>
-  </div>
+</div>
 
 </div>
