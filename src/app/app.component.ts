@@ -1,5 +1,4 @@
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +10,6 @@ export class AppComponent {
   title = 'angular_teste';
   isMenuOpen = false;
   isScrolled = false;
-
-  constructor(private router: Router) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -31,9 +28,5 @@ export class AppComponent {
   closeMenu() {
     this.isMenuOpen = false;
     document.body.style.overflow = 'auto';
-  }
-
-  isActive(route: string): boolean {
-    return this.router.url === route;
   }
 }
