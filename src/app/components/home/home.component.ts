@@ -58,7 +58,10 @@ export class HomeComponent {
     });
   }
 
-
+  abrirWhatsApp() {
+    const texto = encodeURIComponent('Olá! Gostaria de mais informações sobre os consórcios premium.');
+    window.open(`https://wa.me/5534991126384?text=${texto}`, '_blank');
+  }
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
