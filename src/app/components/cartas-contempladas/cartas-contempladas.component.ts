@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import html2canvas from 'html2canvas';
 
 interface Carta {
   id: number;
@@ -131,15 +132,33 @@ export class CartasContempladasComponent implements OnInit {
   async baixarImagem(): Promise<void> {
     if (!this.cartaSelecionada) return;
     
-    // Implementação do html2canvas seria necessária aqui
-    console.log('Função de baixar imagem seria implementada');
+    try {
+      const modalContent = document.querySelector('.gold-card') as HTMLElement;
+      
+      const canvas = await html2canvas(modalContent, {
+        scale: 2, // Melhora a qualidade da imagem
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: null
+      });
+  
+      const link = document.createElement('a');
+      link.download = `carta-contemplada-${this.cartaSelecionada.id}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      
+    } catch (error) {
+      console.error('Erro ao gerar imagem:', error);
+      // Você pode adicionar um toast/alert de erro aqui
+    }
   }
 
   compartilharWhatsApp(): void {
     if (!this.cartaSelecionada) return;
     
     const texto = `Olá! Tenho interesse na carta ${this.cartaSelecionada.id} de ${this.cartaSelecionada.categoria}`;
-    const url = `https://wa.me/5534998700775?text=${encodeURIComponent(texto)}`;
+    const url = `https://wa.me/5534988608090?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
   }
 

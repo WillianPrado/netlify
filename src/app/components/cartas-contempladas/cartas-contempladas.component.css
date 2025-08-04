@@ -568,3 +568,16 @@
       width: 100%;
     }
   }
+
+  .gold-card {
+    /* Garante que o fundo seja opaco para a captura */
+    background: var(--darker-bg) !important;
+    /* Força o tamanho para a captura */
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Esconde elementos que não devem aparecer na imagem */
+  .close-modal, .action-buttons {
+    display: none !important;
+  }
