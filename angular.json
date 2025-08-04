@@ -67,10 +67,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "netlify:build:production"
+              "buildTarget": "netlify:build:production"
             },
             "development": {
-              "browserTarget": "netlify:build:development"
+              "buildTarget": "netlify:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "netlify:build"
+            "buildTarget": "netlify:build"
           }
         },
         "test": {
