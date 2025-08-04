@@ -20,6 +20,7 @@
     "@angular/router": "^17.3.12",
     "axios": "^1.7.7",
     "html2canvas": "^1.4.1",
+    "netlify": "^23.0.0",
     "node-fetch": "^3.3.2",
     "or": "^0.2.0",
     "rxjs": "~7.8.0",

@@ -14,6 +14,7 @@ import { AutomaticLeadCaptureComponent } from './components/automatic-lead-captu
 import { CalcularLanceComponent } from './components/calcular-lance/calcular-lance.component';
 import { CartasContempladasComponent } from './components/cartas-contempladas/cartas-contempladas.component';
 import { HomeComponent } from './components/home/home.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    SwiperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
