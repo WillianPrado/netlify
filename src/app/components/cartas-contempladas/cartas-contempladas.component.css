@@ -817,7 +817,7 @@ h1, h2, h3, h4 {
   }
   
   .modal-card {
-    padding: 15px;
+    padding: 8px;
   }
   
   .info-row {
@@ -1129,7 +1129,7 @@ h1, h2, h3, h4 {
 @media (max-width: 768px) {
   .modal-container {
     width: 98%;
-    max-height: 90vh;
+    max-height: 98vh;
   }
   
   .info-grid {
@@ -1153,7 +1153,7 @@ h1, h2, h3, h4 {
   }
   
   .modal-card {
-    max-height: calc(95vh - 40px);
+    max-height: calc(95vh );
   }
 }
 

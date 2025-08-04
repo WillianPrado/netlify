@@ -204,32 +204,18 @@
           <div class="expert-info">
             <h3>Joyce Prado</h3>
             <p>Especialista em Consórcios High Ticket</p>
-            <div class="signature"></div>
           </div>
         </div>
         
         <div class="card-header">
-          <div class="card-badge">EXCLUSIVO</div>
           <div class="card-title">
             <i class="fas fa-gem"></i>
             <h2>Carta Contemplada</h2>
           </div>
-          <div class="card-number">Nº {{cartaSelecionada.id}}</div>
         </div>
         
         <div class="card-body">
           <div class="info-grid">
-            <div class="info-row">
-              <div class="before-icon">
-                <div class="info-icon">
-                  <i class="fas fa-{{getIconeCategoria(cartaSelecionada.categoria)}}"></i>
-                </div>
-                <span class="info-label">Categoria</span>
-              </div>
-              <div class="info-content">
-                <span class="info-value">{{cartaSelecionada.categoria}}</span>
-              </div>
-            </div>
             
             <div class="info-row">
               <div class="before-icon">
@@ -273,6 +259,18 @@
             <div class="info-row">
               <div class="before-icon">
                 <div class="info-icon">
+                  <i class="fas fa-{{getIconeCategoria(cartaSelecionada.categoria)}}"></i>
+                </div>
+                <span class="info-label">Categoria</span>
+              </div>
+              <div class="info-content">
+                <span class="info-value">{{cartaSelecionada.categoria}}</span>
+              </div>
+            </div>
+            
+            <div class="info-row">
+              <div class="before-icon">
+                <div class="info-icon">
                   <i class="fas fa-building"></i>
                 </div>
                 <span class="info-label">Administradora</span>
@@ -280,20 +278,6 @@
               
               <div class="info-content">
                 <span class="info-value">{{cartaSelecionada.administradora}}</span>
-              </div>
-            </div>
-            
-            <div class="info-row">
-              <div class="before-icon">
-                <div class="info-icon">
-                  <i class="fas fa-info-circle"></i>
-                </div>
-                
-                <span class="info-label">Status</span>
-              </div>
-              
-              <div class="info-content">
-                <span class="info-value">{{cartaSelecionada.reserva}}</span>
               </div>
             </div>
           </div>
