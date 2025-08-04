@@ -16,7 +16,10 @@
 .custom-nav {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
+  box-sizing: border-box; /* Garante que o padding não some à largura total */
+    left: 0;
+    right: 0;
   background-color: var(--nav-bg);
   box-shadow: var(--shadow-elegant);
   backdrop-filter: blur(12px);

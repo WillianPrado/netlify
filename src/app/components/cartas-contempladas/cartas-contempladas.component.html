@@ -1,111 +1,142 @@
-<div class="luxury-theme">
-    <div class="luxury-header">
-      <div class="gold-bar"></div>
-      <h1 class="luxury-title">
-        <span class="gold-text">Cartas</span>
-        <span class="light-text">Contempladas</span>
+<div class="luxury-container">
+  <!-- Hero Section -->
+  <section class="luxury-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="gold-divider-top"></div>
+      <h1 class="hero-title">
+        <span class="hero-title-light">Cartas</span>
+        <span class="hero-title-gold">Contempladas</span>
       </h1>
-      <div class="gold-bar"></div>
+      <div class="gold-divider-bottom"></div>
+      <p class="hero-subtitle">Seleção exclusiva de oportunidades premium</p>
     </div>
-  
-    <div class="luxury-filters">
-      <div class="filter-section">
-        <h2 class="section-title">
-          <i class="fas fa-sliders-h gold-icon"></i>
-          <span>Filtros Exclusivos</span>
-        </h2>
-        
-        <div class="filter-grid">
-          <div class="filter-group">
-            <label class="gold-label">Categoria</label>
-            <div class="gold-buttons">
-              <button [class.active]="categoriaSelecionada === 'Todos'" 
-                      (click)="selecionarCategoria('Todos')">
-                <i class="fas fa-gem"></i> Todos
-              </button>
-              <button [class.active]="categoriaSelecionada === 'Imóvel'" 
-                      (click)="selecionarCategoria('Imóvel')">
-                <i class="fas fa-home"></i> Imóvel
-              </button>
-              <button [class.active]="categoriaSelecionada === 'Veículo'" 
-                      (click)="selecionarCategoria('Veículo')">
-                <i class="fas fa-car"></i> Veículo
-              </button>
-            </div>
+  </section>
+
+  <!-- Filtros Premium -->
+  <section class="luxury-filters-section">
+    <div class="container">
+      <div class="filters-header">
+        <div class="section-icon">
+          <i class="fas fa-sliders-h"></i>
+          <h2 class="section-title">Filtros</h2>
+        </div>
+       
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="filters-grid">
+        <!-- Filtro Categoria -->
+        <div class="filter-card">
+          <h3 class="filter-title">
+            <i class="fas fa-gem"></i>
+            Categoria
+          </h3>
+          <div class="filter-options">
+            <button class="filter-option" 
+                    [class.active]="categoriaSelecionada === 'Todos'"
+                    (click)="selecionarCategoria('Todos')">
+              <i class="fas fa-gem"></i> Todos
+            </button>
+            <button class="filter-option" 
+                    [class.active]="categoriaSelecionada === 'Imóvel'"
+                    (click)="selecionarCategoria('Imóvel')">
+              <i class="fas fa-home"></i> Imóvel
+            </button>
+            <button class="filter-option" 
+                    [class.active]="categoriaSelecionada === 'Veículo'"
+                    (click)="selecionarCategoria('Veículo')">
+              <i class="fas fa-car"></i> Veículo
+            </button>
           </div>
-  
-          <div class="filter-group">
-            <label class="gold-label">Valor Máximo</label>
-            <div class="gold-range">
-              <input type="range" min="1000" max="1000000" [value]="valorCredito" 
-                     (input)="atualizarValorCredito($event)">
-              <span class="gold-value">{{ valorCredito | currency:'BRL':'symbol':'1.2-2' }}</span>
-            </div>
+        </div>
+
+        <!-- Filtro Valor -->
+        <div class="filter-card">
+          <h3 class="filter-title">
+            <i class="fas fa-coins"></i>
+            Valor Máximo
+          </h3>
+          <div class="range-container">
+            <input type="range" min="1000" max="1000000" [value]="valorCredito" 
+                   (input)="atualizarValorCredito($event)" class="gold-range">
+            <span class="range-value">{{ valorCredito | currency:'BRL':'symbol':'1.2-2' }}</span>
           </div>
-  
-          <div class="filter-group">
-            <label class="gold-label">Situação</label>
-            <div class="gold-checkboxes">
-              <label>
-                <input type="checkbox" [(ngModel)]="mostrarDisponivel" (change)="filtrarCartas()">
-                <span class="gold-checkbox"></span>
-                <span class="check-label">Disponível</span>
-              </label>
-              <label>
-                <input type="checkbox" [(ngModel)]="mostrarReservado" (change)="filtrarCartas()">
-                <span class="gold-checkbox"></span>
-                <span class="check-label">Reservado</span>
-              </label>
-            </div>
+        </div>
+
+        <!-- Filtro Situação -->
+        <div class="filter-card">
+          <h3 class="filter-title">
+            <i class="fas fa-clipboard-check"></i>
+            Situação
+          </h3>
+          <div class="checkbox-group">
+            <label class="luxury-checkbox">
+              <input type="checkbox" [(ngModel)]="mostrarDisponivel" (change)="filtrarCartas()">
+              <span class="checkmark"></span>
+              <span class="checkbox-label">Disponível</span>
+            </label>
+            <label class="luxury-checkbox">
+              <input type="checkbox" [(ngModel)]="mostrarReservado" (change)="filtrarCartas()">
+              <span class="checkmark"></span>
+              <span class="checkbox-label">Reservado</span>
+            </label>
           </div>
-  
-          <div class="filter-group">
-            <label class="gold-label">Administradora</label>
-            <div class="gold-select">
-              <select [(ngModel)]="administradoraSelecionada" (change)="filtrarCartas()">
-                <option value="Todas">Todas Administradoras</option>
-                <option *ngFor="let adm of administradoras" [value]="adm">{{adm}}</option>
-              </select>
-              <i class="fas fa-chevron-down"></i>
-            </div>
+        </div>
+
+        <!-- Filtro Administradora -->
+        <div class="filter-card">
+          <h3 class="filter-title">
+            <i class="fas fa-building"></i>
+            Administradora
+          </h3>
+          <div class="select-wrapper">
+            <select [(ngModel)]="administradoraSelecionada" (change)="filtrarCartas()" class="gold-select">
+              <option value="Todas">Todas Administradoras</option>
+              <option *ngFor="let adm of administradoras" [value]="adm">{{adm}}</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
           </div>
         </div>
       </div>
     </div>
-  
-    <div class="luxury-table-container">
-      <div class="table-wrapper">
+  </section>
+
+  <!-- Tabela de Cartas -->
+  <section class="luxury-table-section">
+    <div class="container">
+      <div class="table-responsive">
         <table class="luxury-table">
           <thead>
             <tr>
-              <th class="gold-header">Ações</th>
-              <th class="gold-header sortable" (click)="ordenarPor('valor_credito')">
-                Crédito 
+              <th class="table-header">Ações</th>
+              <th class="table-header sortable" (click)="ordenarPor('valor_credito')">
+                Crédito
                 <i class="fas" [ngClass]="{
                   'fa-arrow-up': campoOrdenacao === 'valor_credito' && ordemAscendente,
                   'fa-arrow-down': campoOrdenacao === 'valor_credito' && !ordemAscendente,
                   'fa-sort': campoOrdenacao !== 'valor_credito'
                 }"></i>
               </th>
-              <th class="gold-header sortable" (click)="ordenarPor('entrada')">
-                Entrada 
+              <th class="table-header sortable" (click)="ordenarPor('entrada')">
+                Entrada
                 <i class="fas" [ngClass]="{
                   'fa-arrow-up': campoOrdenacao === 'entrada' && ordemAscendente,
                   'fa-arrow-down': campoOrdenacao === 'entrada' && !ordemAscendente,
                   'fa-sort': campoOrdenacao !== 'entrada'
                 }"></i>
               </th>
-              <th class="gold-header sortable" (click)="ordenarPor('parcelas')">
-                Parcela 
+              <th class="table-header sortable" (click)="ordenarPor('parcelas')">
+                Parcela
                 <i class="fas" [ngClass]="{
                   'fa-arrow-up': campoOrdenacao === 'parcelas' && ordemAscendente,
                   'fa-arrow-down': campoOrdenacao === 'parcelas' && !ordemAscendente,
                   'fa-sort': campoOrdenacao !== 'parcelas'
                 }"></i>
               </th>
-              <th class="gold-header">Administradora</th>
-              <th class="gold-header sortable" (click)="ordenarPor('id')">
-                Nº Carta 
+              <th class="table-header">Administradora</th>
+              <th class="table-header sortable" (click)="ordenarPor('id')">
+                Nº Carta
                 <i class="fas" [ngClass]="{
                   'fa-arrow-up': campoOrdenacao === 'id' && ordemAscendente,
                   'fa-arrow-down': campoOrdenacao === 'id' && !ordemAscendente,
@@ -115,115 +146,163 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let carta of cartasFiltradas">
+            <tr *ngFor="let carta of cartasFiltradas" class="table-row">
               <td class="action-cell">
-                <button class="gold-button view-btn" (click)="abrirModal(carta)">
+                <button class="action-btn view-btn" (click)="abrirModal(carta)">
                   <i class="fas fa-eye"></i>
                 </button>
                 <a *ngIf="carta.reserva !== 'Reservado'" 
-                   class="gold-button reserve-btn" 
+                   class="action-btn whatsapp-btn" 
                    href="https://wa.me/5534998700775?text=Olá! Tenho interesse na carta {{carta.id}} de {{carta.categoria}}" 
                    target="_blank">
-                  <i class='fab fa-whatsapp'></i>
+                  <i class="fab fa-whatsapp"></i>
                 </a>
-                <button *ngIf="carta.reserva === 'Reservado'" class="gold-button reserved-btn">
+                <button *ngIf="carta.reserva === 'Reservado'" class="action-btn reserved-btn">
                   <i class="fas fa-lock"></i>
                 </button>
               </td>
               <td>
-                <i class="fas fa-{{getIconeCategoria(carta.categoria)}} gold-icon"></i> 
-                <span class="gold-text">{{carta.valor_credito_fmt || (carta.valor_credito | currency:'BRL':'symbol':'1.2-2')}}</span>
-              </td>
-              <td class="gold-text">{{carta.entrada_fmt || (carta.entrada | currency:'BRL':'symbol':'1.2-2')}}</td>
-              <td>
-                <span class="gold-text">{{carta.parcelas}}x</span> 
-                <span class="light-text">de</span> 
-                <span class="gold-text">{{carta.valor_parcela_fmt || (carta.parcelas | currency:'BRL':'symbol':'1.2-2')}}</span>
-              </td>
-              <td>
-                <div class="admin-logo-container">
-                  <img *ngIf="carta.administradora_img" class="admin-logo" [src]="carta.administradora_img" [alt]="carta.administradora" />
-                  <span *ngIf="!carta.administradora_img" class="admin-name">{{carta.administradora}}</span>
+                <div class="value-cell">
+                  <i class="fas fa-{{getIconeCategoria(carta.categoria)}}"></i>
+                  <span>{{carta.valor_credito_fmt || (carta.valor_credito | currency:'BRL':'symbol':'1.2-2')}}</span>
                 </div>
               </td>
-              <td class="gold-text">{{carta.id}}</td>
+              <td>{{carta.entrada_fmt || (carta.entrada | currency:'BRL':'symbol':'1.2-2')}}</td>
+              <td>
+                <div class="installment-cell">
+                  <span>{{carta.parcelas}}x</span>
+                  <span>de</span>
+                  <span>{{carta.valor_parcela_fmt || (carta.parcelas | currency:'BRL':'symbol':'1.2-2')}}</span>
+                </div>
+              </td>
+              <td>
+                <div class="admin-cell">
+                  <img *ngIf="carta.administradora_img" [src]="carta.administradora_img" [alt]="carta.administradora" class="admin-logo">
+                  <span *ngIf="!carta.administradora_img">{{carta.administradora}}</span>
+                </div>
+              </td>
+              <td class="carta-id">{{carta.id}}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-  
-    <div class="luxury-modal" [class.show]="modalAberta">
-      <div class="modal-overlay" (click)="fecharModal()"></div>
-      <div class="modal-content">
-        <button class="close-modal" (click)="fecharModal()">
-          <i class="fas fa-times"></i>
-        </button>
+  </section>
+
+  <!-- Modal -->
+  <div class="luxury-modal" [class.show]="modalAberta">
+    <div class="modal-overlay" (click)="fecharModal()"></div>
+    <div class="modal-container">
+      <button class="modal-close" (click)="fecharModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div *ngIf="cartaSelecionada" class="modal-card" #modalContent>
+        <!-- Branding Joyce Prado -->
+        <div class="expert-branding">
+          <div class="expert-photo"></div>
+          <div class="expert-info">
+            <h3>Joyce Prado</h3>
+            <p>Especialista em Consórcios High Ticket</p>
+            <div class="signature"></div>
+          </div>
+        </div>
         
-        <div *ngIf="cartaSelecionada" class="gold-card">
-          <div class="card-header">
-            <div class="card-badge">EXCLUSIVO</div>
-            <div class="card-title">
-              <i class="fas fa-gem"></i>
-              <h2>Carta Contemplada</h2>
+        <div class="card-header">
+          <div class="card-badge">EXCLUSIVO</div>
+          <div class="card-title">
+            <i class="fas fa-gem"></i>
+            <h2>Carta Contemplada</h2>
+          </div>
+          <div class="card-number">Nº {{cartaSelecionada.id}}</div>
+        </div>
+        
+        <div class="card-body">
+          <div class="info-grid">
+            <div class="info-row">
+              <div class="info-icon">
+                <i class="fas fa-{{getIconeCategoria(cartaSelecionada.categoria)}}"></i>
+              </div>
+              <div class="info-content">
+                <span class="info-label">Categoria</span>
+                <span class="info-value">{{cartaSelecionada.categoria}}</span>
+              </div>
             </div>
-            <div class="card-number">Nº {{cartaSelecionada.id}}</div>
+            
+            <div class="info-row">
+              <div class="info-icon">
+                <i class="fas fa-coins"></i>
+              </div>
+              <div class="info-content">
+                <span class="info-label">Crédito</span>
+                <span class="info-value">{{cartaSelecionada.valor_credito_fmt || (cartaSelecionada.valor_credito | currency:'BRL':'symbol':'1.2-2')}}</span>
+              </div>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-icon">
+                <i class="fas fa-hand-holding-usd"></i>
+              </div>
+              <div class="info-content">
+                <span class="info-label">Entrada</span>
+                <span class="info-value">{{cartaSelecionada.entrada_fmt || (cartaSelecionada.entrada | currency:'BRL':'symbol':'1.2-2')}}</span>
+              </div>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-icon">
+                <i class="fas fa-receipt"></i>
+              </div>
+              <div class="info-content">
+                <span class="info-label">Parcelas</span>
+                <span class="info-value">{{cartaSelecionada.parcelas}}x de {{cartaSelecionada.valor_parcela_fmt || (cartaSelecionada.parcelas | currency:'BRL':'symbol':'1.2-2')}}</span>
+              </div>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div class="info-content">
+                <span class="info-label">Administradora</span>
+                <span class="info-value">{{cartaSelecionada.administradora}}</span>
+              </div>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-icon">
+                <i class="fas fa-info-circle"></i>
+              </div>
+              <div class="info-content">
+                <span class="info-label">Status</span>
+                <span class="info-value">{{cartaSelecionada.reserva}}</span>
+              </div>
+            </div>
           </div>
           
-          <div class="card-body">
-            <div class="info-row">
-              <i class="fas fa-{{getIconeCategoria(cartaSelecionada.categoria)}}"></i>
-              <span class="info-label">Categoria:</span>
-              <span class="info-value">{{cartaSelecionada.categoria}}</span>
-            </div>
-            
-            <div class="info-row">
-              <i class="fas fa-coins"></i>
-              <span class="info-label">Crédito:</span>
-              <span class="info-value">{{cartaSelecionada.valor_credito_fmt || (cartaSelecionada.valor_credito | currency:'BRL':'symbol':'1.2-2')}}</span>
-            </div>
-            
-            <div class="info-row">
-              <i class="fas fa-hand-holding-usd"></i>
-              <span class="info-label">Entrada:</span>
-              <span class="info-value">{{cartaSelecionada.entrada_fmt || (cartaSelecionada.entrada | currency:'BRL':'symbol':'1.2-2')}}</span>
-            </div>
-            
-            <div class="info-row">
-              <i class="fas fa-receipt"></i>
-              <span class="info-label">Parcelas:</span>
-              <span class="info-value">{{cartaSelecionada.parcelas}}x de {{cartaSelecionada.valor_parcela_fmt || (cartaSelecionada.parcelas | currency:'BRL':'symbol':'1.2-2')}}</span>
-            </div>
-            
-            <div class="info-row">
-              <i class="fas fa-building"></i>
-              <span class="info-label">Administradora:</span>
-              <span class="info-value">{{cartaSelecionada.administradora}}</span>
-            </div>
-            
-            <div class="info-row">
-              <i class="fas fa-info-circle"></i>
-              <span class="info-label">Status:</span>
-              <span class="info-value">{{cartaSelecionada.reserva}}</span>
-            </div>
+          <div class="urgency-banner">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Oferta válida por tempo limitado!</span>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="action-buttons">
+            <button class="whatsapp-btn" (click)="compartilharWhatsApp()">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="download-btn" (click)="baixarApenasImagem()">
+              <i class="fas fa-download"></i> Baixar
+            </button>
           </div>
           
-          <div class="card-footer">
-            <div class="gold-alert">
-              <i class="fas fa-exclamation-triangle"></i>
-              <span>Oferta válida por tempo limitado!</span>
-            </div>
-            
-            <div class="action-buttons">
-              <button class="whatsapp-btn" (click)="compartilharWhatsApp()">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-              </button>
-              <button class="download-btn" (click)="baixarImagem()">
-                <i class="fas fa-download"></i> Baixar
-              </button>
-            </div>
+          <div class="scroll-indicator" *ngIf="showScrollIndicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Role para ver mais</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+</div>

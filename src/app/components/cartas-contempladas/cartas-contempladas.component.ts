@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import html2canvas from 'html2canvas';
 
@@ -34,6 +34,9 @@ export class CartasContempladasComponent implements OnInit {
   ordemAscendente = true;
   modalAberta = false;
   cartaSelecionada: Carta | null = null;
+  showScrollIndicator = true;
+
+  @ViewChild('modalContent', { static: false }) modalContent!: ElementRef;
 
   administradoras = [
     'Outras Adm.', 'HS Consórcios', 'Sinosserra', 'Banrisul', 
@@ -52,6 +55,10 @@ export class CartasContempladasComponent implements OnInit {
     this.carregarCartas();
   }
 
+  ngAfterViewInit() {
+    this.checkScroll();
+  }
+
   carregarCartas(): void {
     this.http.get<Carta[]>('https://fragaebitelloconsorcios.com.br/api/json/contemplados')
       .subscribe({
@@ -63,6 +70,16 @@ export class CartasContempladasComponent implements OnInit {
           console.error('Erro ao carregar cartas:', err);
         }
       });
+  }
+
+  checkScroll() {
+    if (this.modalContent) {
+      const element = this.modalContent.nativeElement;
+      element.addEventListener('scroll', () => {
+        const isBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + 5;
+        this.showScrollIndicator = !isBottom;
+      });
+    }
   }
 
   filtrarCartas(): void {
@@ -122,25 +139,29 @@ export class CartasContempladasComponent implements OnInit {
   abrirModal(carta: Carta): void {
     this.cartaSelecionada = carta;
     this.modalAberta = true;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => this.checkScroll(), 100); // Garante que o scroll seja verificado após a abertura
   }
 
   fecharModal(): void {
     this.modalAberta = false;
     this.cartaSelecionada = null;
+    document.body.style.overflow = 'auto';
   }
 
   async baixarImagem(): Promise<void> {
     if (!this.cartaSelecionada) return;
     
     try {
-      const modalContent = document.querySelector('.gold-card') as HTMLElement;
+      const modalContent = document.querySelector('.modal-card') as HTMLElement;
       
       const canvas = await html2canvas(modalContent, {
-        scale: 2, // Melhora a qualidade da imagem
+        scale: 2,
         logging: false,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: null
+        backgroundColor: null,
+        scrollY: -window.scrollY
       });
   
       const link = document.createElement('a');
@@ -150,7 +171,43 @@ export class CartasContempladasComponent implements OnInit {
       
     } catch (error) {
       console.error('Erro ao gerar imagem:', error);
-      // Você pode adicionar um toast/alert de erro aqui
+    }
+  }
+
+  async baixarApenasImagem(): Promise<void> {
+    if (!this.cartaSelecionada) return;
+    
+    try {
+      const modalCard = document.querySelector('.modal-card') as HTMLElement;
+      const clone = modalCard.cloneNode(true) as HTMLElement;
+      
+      // Remove elementos que não devem aparecer na imagem
+      const elementsToRemove = clone.querySelectorAll('.action-buttons, .scroll-indicator');
+      elementsToRemove.forEach(el => el.remove());
+      
+      // Aplica estilos temporários para a imagem
+      clone.style.width = modalCard.offsetWidth + 'px';
+      clone.style.position = 'absolute';
+      clone.style.left = '-9999px';
+      document.body.appendChild(clone);
+      
+      const canvas = await html2canvas(clone, {
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#000'
+      });
+      
+      const link = document.createElement('a');
+      link.download = `carta-contemplada-${this.cartaSelecionada.id}-simples.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      
+      document.body.removeChild(clone);
+      
+    } catch (error) {
+      console.error('Erro ao gerar imagem simplificada:', error);
     }
   }
 
