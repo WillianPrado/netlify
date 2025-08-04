@@ -26,7 +26,7 @@ export class CartasContempladasComponent implements OnInit {
   cartas: Carta[] = [];
   cartasFiltradas: Carta[] = [];
   categoriaSelecionada = 'Todos';
-  valorCredito = 1000000;
+  valorCredito = 2000000;
   mostrarDisponivel = true;
   mostrarReservado = true;
   administradoraSelecionada = 'Todas';
@@ -64,6 +64,7 @@ export class CartasContempladasComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.cartas = data;
+          this.addValue();
           this.filtrarCartas();
         },
         error: (err) => {
@@ -80,6 +81,23 @@ export class CartasContempladasComponent implements OnInit {
         this.showScrollIndicator = !isBottom;
       });
     }
+  }
+
+  addValue() {
+    this.cartas.forEach(x => {
+      x.entrada = Number(x.entrada) + 1000.00;
+      //Atualiza também o valor formatado
+      x.entrada_fmt = this.formatarMoeda(x.entrada);
+    });
+  }
+  
+  // Adicione este método se não existir
+  formatarMoeda(valor: number): string {
+    return valor.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2
+    });
   }
 
   filtrarCartas(): void {
@@ -151,27 +169,53 @@ export class CartasContempladasComponent implements OnInit {
 
   async baixarImagem(): Promise<void> {
     if (!this.cartaSelecionada) return;
-    
-    try {
-      const modalContent = document.querySelector('.modal-card') as HTMLElement;
-      
-      const canvas = await html2canvas(modalContent, {
-        scale: 2,
-        logging: false,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: null,
-        scrollY: -window.scrollY
-      });
   
-      const link = document.createElement('a');
-      link.download = `carta-contemplada-${this.cartaSelecionada.id}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      
-    } catch (error) {
-      console.error('Erro ao gerar imagem:', error);
-    }
+  try {
+    const modalCard = document.querySelector('.modal-card') as HTMLElement;
+    
+    // Cria um clone do elemento para manipulação
+    const clone = modalCard.cloneNode(true) as HTMLElement;
+    
+    // Remove elementos que não devem aparecer no story
+    const elementsToRemove = clone.querySelectorAll('.action-buttons, .scroll-indicator');
+    elementsToRemove.forEach(el => el.remove());
+    
+    // Aplica estilos temporários para o story
+    clone.style.width = '1080px'; // Largura recomendada para stories
+    clone.style.minHeight = '1920px'; // Altura para proporção 9:16
+    clone.style.position = 'absolute';
+    clone.style.left = '-9999px';
+    clone.style.padding = '40px';
+    clone.style.boxSizing = 'border-box';
+    clone.style.backgroundColor = '#000'; // Fundo preto para stories
+    
+    // Adiciona ao DOM temporariamente
+    document.body.appendChild(clone);
+    
+    // Configurações do html2canvas para story
+    const canvas = await html2canvas(clone, {
+      scale: 2,
+      logging: false,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#000',
+      width: 1080,
+      height: 1920,
+      scrollY: 0
+    });
+    
+    // Cria e dispara o download
+    const link = document.createElement('a');
+    link.download = `story-carta-${this.cartaSelecionada.id}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    
+    // Remove o clone do DOM
+    document.body.removeChild(clone);
+    
+  } catch (error) {
+    console.error('Erro ao gerar imagem para story:', error);
+  }
   }
 
   async baixarApenasImagem(): Promise<void> {

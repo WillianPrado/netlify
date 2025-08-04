@@ -645,7 +645,11 @@ h1, h2, h3, h4 {
 .info-row:last-child {
   border-bottom: none;
 }
-
+.before-icon{  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .info-icon {
   width: 30px;
   height: 30px;
@@ -653,7 +657,7 @@ h1, h2, h3, h4 {
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+   justify-content: center; 
   color: var(--secondary);
   font-size: 0.9rem;
   flex-shrink: 0;
@@ -689,10 +693,11 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 10px;
   background: rgba(212, 175, 55, 0.1);
-  border: 1px solid var(--secondary);
+  border: 1px solid red;
   border-radius: var(--border-radius-sm);
   padding: 10px 15px;
   margin-bottom: 20px;
+  background-color: #ff00003d;
 }
 
 .urgency-banner i {
@@ -977,7 +982,7 @@ h1, h2, h3, h4 {
 /* Responsivo */
 @media (max-width: 768px) {
   .expert-branding {
-    flex-direction: column;
+    /* flex-direction: column; */
     text-align: center;
     padding: 20px;
   }
@@ -1060,7 +1065,7 @@ h1, h2, h3, h4 {
   gap: 15px;
   padding: 12px 0;
   border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-  min-height: 60px;
+  min-height: 40px;
 }
 
 /* Footer e Botões */
@@ -1151,3 +1156,43 @@ h1, h2, h3, h4 {
     max-height: calc(95vh - 40px);
   }
 }
+
+/* Estilos específicos para a versão story */
+.modal-card.story-version {
+  background-color: #000 !important;
+  color: #fff !important;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.modal-card.story-version .info-value,
+.modal-card.story-version .info-label {
+  font-size: 28px !important;
+  color: #fff !important;
+}
+
+.modal-card.story-version .card-header {
+  border-bottom: 2px solid #fff;
+}
+
+.modal-card.story-version .expert-branding {
+  margin-bottom: 30px;
+}
+
+/* Botão de download para story */
+.story-download-btn {
+  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  margin: 10px 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+

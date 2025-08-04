@@ -220,61 +220,79 @@
         <div class="card-body">
           <div class="info-grid">
             <div class="info-row">
-              <div class="info-icon">
-                <i class="fas fa-{{getIconeCategoria(cartaSelecionada.categoria)}}"></i>
+              <div class="before-icon">
+                <div class="info-icon">
+                  <i class="fas fa-{{getIconeCategoria(cartaSelecionada.categoria)}}"></i>
+                </div>
+                <span class="info-label">Categoria</span>
               </div>
               <div class="info-content">
-                <span class="info-label">Categoria</span>
                 <span class="info-value">{{cartaSelecionada.categoria}}</span>
               </div>
             </div>
             
             <div class="info-row">
-              <div class="info-icon">
-                <i class="fas fa-coins"></i>
-              </div>
-              <div class="info-content">
+              <div class="before-icon">
+                <div class="info-icon">
+                  <i class="fas fa-coins"></i>
+                </div>
                 <span class="info-label">Crédito</span>
+              </div>
+              
+              <div class="info-content">
                 <span class="info-value">{{cartaSelecionada.valor_credito_fmt || (cartaSelecionada.valor_credito | currency:'BRL':'symbol':'1.2-2')}}</span>
               </div>
             </div>
             
             <div class="info-row">
-              <div class="info-icon">
-                <i class="fas fa-hand-holding-usd"></i>
-              </div>
-              <div class="info-content">
+              <div class="before-icon">
+                <div class="info-icon">
+                  <i class="fas fa-hand-holding-usd"></i>
+                </div>
                 <span class="info-label">Entrada</span>
+              </div>
+              
+              <div class="info-content">
                 <span class="info-value">{{cartaSelecionada.entrada_fmt || (cartaSelecionada.entrada | currency:'BRL':'symbol':'1.2-2')}}</span>
               </div>
             </div>
             
             <div class="info-row">
-              <div class="info-icon">
-                <i class="fas fa-receipt"></i>
-              </div>
-              <div class="info-content">
+              <div class="before-icon">
+                <div class="info-icon">
+                  <i class="fas fa-receipt"></i>
+                </div>
                 <span class="info-label">Parcelas</span>
+              </div>
+              
+              <div class="info-content">
                 <span class="info-value">{{cartaSelecionada.parcelas}}x de {{cartaSelecionada.valor_parcela_fmt || (cartaSelecionada.parcelas | currency:'BRL':'symbol':'1.2-2')}}</span>
               </div>
             </div>
             
             <div class="info-row">
-              <div class="info-icon">
-                <i class="fas fa-building"></i>
-              </div>
-              <div class="info-content">
+              <div class="before-icon">
+                <div class="info-icon">
+                  <i class="fas fa-building"></i>
+                </div>
                 <span class="info-label">Administradora</span>
+              </div>
+              
+              <div class="info-content">
                 <span class="info-value">{{cartaSelecionada.administradora}}</span>
               </div>
             </div>
             
             <div class="info-row">
-              <div class="info-icon">
-                <i class="fas fa-info-circle"></i>
-              </div>
-              <div class="info-content">
+              <div class="before-icon">
+                <div class="info-icon">
+                  <i class="fas fa-info-circle"></i>
+                </div>
+                
                 <span class="info-label">Status</span>
+              </div>
+              
+              <div class="info-content">
                 <span class="info-value">{{cartaSelecionada.reserva}}</span>
               </div>
             </div>
