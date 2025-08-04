@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { LeadsComponent } from './components/leads/leads.component';
 import { AutomaticLeadCaptureComponent } from './components/automatic-lead-capture/automatic-lead-capture.component';  
 import { CalcularLanceComponent } from './components/calcular-lance/calcular-lance.component';
-
+import { CartasContempladasComponent } from './components/cartas-contempladas/cartas-contempladas.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,15 @@ import { CalcularLanceComponent } from './components/calcular-lance/calcular-lan
     LoginComponent,
     LeadsComponent,
     AutomaticLeadCaptureComponent,
-    CalcularLanceComponent
+    CalcularLanceComponent,
+    CartasContempladasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

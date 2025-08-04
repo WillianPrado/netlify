@@ -1,0 +1,589 @@
+<div class="main-container">
+    <!-- Navbar -->
+    <nav class="navbar" [class.active]="isMenuOpen">
+      <div class="navbar-container">
+        <div class="logo">
+          <span class="logo-icon">💎</span>
+          <span class="logo-text">Consórcios Elite</span>
+        </div>
+        
+        <div class="menu-toggle" (click)="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        
+        <ul class="nav-links">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#testimonials">Depoimentos</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+  
+    <!-- Hero Section -->
+    <div class="luxury-hero-overlay"></div>
+    
+    
+    <section class="luxury-hero-mobile">
+        <div class="luxury-container-mobile">
+          <!-- Foto da profissional -->
+          <div class="luxury-profile-mobile">
+            <div class="profile-frame-mobile">
+              <img src="../../../assets/images/joyce.enc" alt="Joyce Vilarinho - Especialista em Consórcios" class="profile-img-mobile">
+              <div class="gold-badge-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                  <path d="M528 448H112c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h416c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm64-320c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.4 19.8L476 239.2c-15.4 9.2-35.3 4-44.2-11.6L350.3 85C361 76.2 368 63 368 48c0-26.5-21.5-48-48-48s-48 21.5-48 48c0 15 7 28.2 17.7 37l-81.5 142.6c-8.9 15.6-28.9 20.8-44.2 11.6l-72.3-43.4c2.7-6 4.4-12.7 4.4-19.8 0-26.5-21.5-48-48-48S0 149.5 0 176s21.5 48 48 48c2.6 0 5.2-.4 7.7-.8L128 416h384l72.3-192.8c2.5.4 5.1.8 7.7.8 26.5 0 48-21.5 48-48s-21.5-48-48-48z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Conteúdo textual -->
+          <div class="luxury-content-mobile">
+            <h1 class="luxury-title-mobile">
+              <span class="gold-text">Transforme sonhos</span> em realidade 
+              <span class="pink-text">sem comprometer</span> seu patrimônio
+            </h1>
+            
+            <p class="luxury-subtitle-mobile">
+              Assessoria exclusiva em consórcios para quem demanda <span class="gold-text">excelência</span>
+            </p>
+      
+            <!-- Ícones de serviços -->
+            <div class="services-grid-mobile">
+              <div class="service-item-mobile">
+                <div class="service-icon-mobile">
+                  <svg viewBox="0 0 576 512">
+                    <path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path>
+                  </svg>
+                </div>
+                <h3>Imóveis</h3>
+              </div>
+      
+              <div class="service-item-mobile">
+                <div class="service-icon-mobile">
+                  <svg viewBox="0 0 512 512">
+                    <path d="M499.99 176h-59.87l-16.64-41.6C406.38 91.63 365.57 64 319.5 64h-127c-46.06 0-86.88 27.63-103.99 70.4L71.87 176H12.01C4.2 176-1.53 183.34.37 190.91l6 24C7.7 220.25 12.5 224 18.01 224h20.07C24.65 235.73 16 252.78 16 272v48c0 16.12 6.16 30.67 16 41.93V416c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h256v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-54.07c9.84-11.25 16-25.8 16-41.93v-48c0-19.22-8.65-36.27-22.07-48H494c5.51 0 10.31-3.75 11.64-9.09l6-24c1.89-7.57-3.84-14.91-11.65-14.91zm-352.06-17.83c7.29-18.22 24.94-30.17 44.57-30.17h127c19.63 0 37.28 11.95 44.57 30.17L384 208H128l19.93-49.83zM96 319.8c-19.2 0-32-12.76-32-31.9S76.8 256 96 256s48 28.71 48 47.85-28.8 15.95-48 15.95zm320 0c-19.2 0-48 3.19-48-15.95S396.8 256 416 256s32 12.76 32 31.9-12.8 31.9-32 31.9z"></path>
+                  </svg>
+                </div>
+                <h3>Veículos</h3>
+              </div>
+      
+              <div class="service-item-mobile">
+                <div class="service-icon-mobile">
+                  <svg viewBox="0 0 576 512">
+                    <path d="M560 224h-29.5c-8.8-20-21.6-37.7-37.4-52.5L512 96h-32c-29.4 0-55.4 13.5-73 34.3-7.6-1.1-15.1-2.3-23-2.3H256c-77.4 0-141.9 55-156.8 128H56c-14.8 0-26.5-13.5-23.5-28.8C34.7 215.8 45.4 208 57 208h1c3.3 0 6-2.7 6-6v-20c0-3.3-2.7-6-6-6-28.5 0-53.9 20.4-57.5 48.6C-3.9 258.8 22.7 288 56 288h40c0 52.2 25.4 98.1 64 127.3V496c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16v-48h128v48c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16v-80.7c11.8-8.9 22.3-19.4 31.3-31.3H560c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16zm-128 64c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zM256 96h128c5.4 0 10.7.4 15.9.8 0-.3.1-.5.1-.8 0-53-43-96-96-96s-96 43-96 96c0 2.1.5 4.1.6 6.2 15.2-3.9 31-6.2 47.4-6.2z"></path>
+                  </svg>
+                </div>
+                <h3>Investimentos</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      
+  
+    <!-- About Section -->
+    <section id="about" class="about-section">      
+      <div class="about-content">
+        <h2 class="section-title"><span class="underline">Sobre</span> a Especialista</h2>
+        <p class="about-text">Com mais de 8 anos de experiência no mercado de consórcios de alto padrão, nossa especialista já auxiliou mais de 300 familias na realização de seus objetivos patrimoniais.</p>
+        <p class="about-text">Certificada pelas principais administradoras do país, traz um olhar estratégico e personalizado para cada caso.</p>
+        <div class="signature">
+          <img src="../../../assets/images/assinatura.png" alt="Assinatura" class="signature-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Simulation Section -->
+    <section class="simulation-section">
+        <div class="simulation-container">
+          <div class="simulation-card">
+            <div class="simulation-header">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="form-icon">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+              </svg>
+              <h2 class="simulation-title">Solicite uma <span class="gold-text">Simulação Personalizada</span></h2>
+              <p class="simulation-subtitle">Preencha os dados e receba propostas exclusivas</p>
+            </div>
+            
+            <form id="simulacaoForm" class="elegant-form">
+              <div class="input-group">
+                <input type="text" name="nome" placeholder=" " required>
+                <label>Seu nome completo</label>
+                <div class="input-decoration"></div>
+              </div>
+              
+              <div class="input-group">
+                <input type="email" name="email" placeholder=" " required>
+                <label>Seu melhor e-mail</label>
+                <div class="input-decoration"></div>
+              </div>
+              
+              <div class="input-group">
+                <input type="tel" name="telefone" placeholder=" " required>
+                <label>WhatsApp com DDD</label>
+                <div class="input-decoration"></div>
+              </div>
+              
+              <div class="select-group">
+                <select name="interesse" required>
+                  <option value="" disabled selected></option>
+                  <option value="Imóvel">Imóvel</option>
+                  <option value="Carro">Carro</option>
+                  <option value="Investimento">Investimento</option>
+                  <option value="Outro">Outro</option>
+                </select>
+                <label>Tipo de consórcio</label>
+                <div class="select-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <div class="input-group">
+                <input type="text" name="valor_parcela" placeholder=" " required>
+                <label>Valor da parcela desejada</label>
+                <div class="input-decoration"></div>
+              </div>
+              
+              <div class="select-group">
+                <select name="credito" required>
+                  <option value="" disabled selected></option>
+                  <option value="Até 300 mil">Até R$ 300 mil</option>
+                  <option value="301 a 600 mil">De R$ 301 mil até R$ 600 mil</option>
+                  <option value="601 mil a 1 milhão">De R$ 601 mil até R$ 1 milhão</option>
+                  <option value="Acima de 1 milhão">Acima de R$ 1 milhão</option>
+                </select>
+                <label>Valor de crédito desejado</label>
+                <div class="select-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <button type="submit" class="gold-button">
+                <span class="button-icon">📩</span>
+                <span class="button-text">Enviar Solicitação</span>
+              </button>
+            </form>
+            
+            <div id="msgStatus" class="status-message"></div>
+            
+            <div class="security-badge">
+              <svg viewBox="0 0 24 24" class="lock-icon">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+              </svg>
+              <span>Seus dados estão 100% seguros</span>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+    <!-- Services Section -->
+    <!-- Services Section -->
+<section id="services" class="consortium-section-dark">
+    <div class="section-header">
+      <h2 class="section-title">Consórcios <span class="highlight">Disponíveis</span></h2>
+      <p class="section-subtitle">Planos ativos com condições reais</p>
+    </div>
+    
+    <div class="consortium-grid">
+        
+      <!-- Cartão 1 - Carro novo -->
+      <div class="consortium-card-dark">
+        <div class="card-header-dark">
+          <h3 class="card-title">CARRO NOVO SEM JUROS</h3>
+          <p class="card-subtitle">Parcelas reduzidas até contemplação</p>
+        </div>
+        
+        <div class="card-body-dark">
+          <div class="pricing-table-dark">
+            <div class="table-header-dark">
+              <span>Crédito</span>
+              <span>De</span>
+              <span>Por</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 80.000,00</span>
+              <span>R$ 608,80</span>
+              <span class="highlight-price">R$ 592,39</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 90.000,00</span>
+              <span>R$ 684,90</span>
+              <span class="highlight-price">R$ 666,44</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 100.000,00</span>
+              <span>R$ 761,00</span>
+              <span class="highlight-price">R$ 740,49</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 120.000,00</span>
+              <span>R$ 913,20</span>
+              <span class="highlight-price">R$ 888,59</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 130.000,00</span>
+              <span>R$ 989,29</span>
+              <span class="highlight-price">R$ 962,64</span>
+            </div>
+          </div>
+          
+          <div class="card-footer-dark">
+            <p class="disclaimer">Plano de 100 meses | Taxa administrativa reduzida</p>
+            <p class="economy">Economia de até R$2.600,00</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Cartão 2 - Imóvel para construção -->
+      <div class="consortium-card-dark">
+        <div class="card-header-dark">
+          <h3 class="card-title">CONSÓRCIO IMOBILIÁRIO</h3>
+          <p class="card-subtitle">Crédito para construção - R$ 110.000,00</p>
+        </div>
+        
+        <div class="card-body-dark">
+          <div class="pricing-table-dark">
+            <div class="table-header-dark">
+              <span>Crédito</span>
+              <span>De</span>
+              <span>Por</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 110.000,00</span>
+              <span>R$ 404,30</span>
+              <span class="highlight-price">R$ 402,44</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 120.000,00</span>
+              <span>R$ 441,06</span>
+              <span class="highlight-price">R$ 439,03</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 150.000,00</span>
+              <span>R$ 551,32</span>
+              <span class="highlight-price">R$ 548,79</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 190.000,00</span>
+              <span>R$ 698,34</span>
+              <span class="highlight-price">R$ 695,13</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 220.000,00</span>
+              <span>R$ 808,61</span>
+              <span class="highlight-price">R$ 804,89</span>
+            </div>
+          </div>
+          
+          <div class="card-footer-dark">
+            <p class="disclaimer">217 parcelas | Assembleia em 26/07</p>
+            <p class="economy">Economia de até R$2.200,00</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Cartão 3 - SUV/Caminhão -->
+      <div class="consortium-card-dark">
+        <div class="card-header-dark">
+          <h3 class="card-title">SUV/CAMINHÃO</h3>
+          <p class="card-subtitle">Para quem quer crescer</p>
+        </div>
+        
+        <div class="card-body-dark">
+          <div class="pricing-table-dark">
+            <div class="table-header-dark">
+              <span>Crédito</span>
+              <span>De</span>
+              <span>Por</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 180.000,00</span>
+              <span>R$ 891,88</span>
+              <span class="highlight-price">R$ 870,35</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 200.000,00</span>
+              <span>R$ 990,98</span>
+              <span class="highlight-price">R$ 967,05</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 220.000,00</span>
+              <span>R$ 1.090,08</span>
+              <span class="highlight-price">R$ 1.063,76</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 250.000,00</span>
+              <span>R$ 1.238,72</span>
+              <span class="highlight-price">R$ 1.208,81</span>
+            </div>
+            <div class="table-row-dark">
+              <span>R$ 300.000,00</span>
+              <span>R$ 1.486,47</span>
+              <span class="highlight-price">R$ 1.450,58</span>
+            </div>
+          </div>
+          
+          <div class="card-footer-dark">
+            <p class="disclaimer">143 meses | Plano 50/50</p>
+            <p class="economy">Economia de até R$9.000,00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Consórcio Imobiliário Premium -->
+<section id="premium-real-estate" class="premium-consortium-section">
+    <div class="section-header">
+      <h2 class="section-title">Consórcio <span class="highlight">Imobiliário Premium</span></h2>
+      <p class="section-subtitle">Condições exclusivas para projetos de alto padrão</p>
+    </div>
+  
+    <div class="premium-consortium-card">
+      <div class="card-header">
+        <div class="card-badge">EXCLUSIVO</div>
+        <h3 class="card-title">MAGGA LU IMOBILIÁRIO</h3>
+        <p class="card-subtitle">Para aquisição de imóveis de alto padrão</p>
+      </div>
+  
+      <div class="card-body">
+        <div class="main-offer">
+          <div class="offer-item">
+            <span class="offer-label">Crédito</span>
+            <span class="offer-value highlight">R$ 700.000,00</span>
+          </div>
+          <div class="offer-item">
+            <span class="offer-label">Parcela</span>
+            <span class="offer-value highlight">R$ 2.309,94</span>
+          </div>
+          <div class="offer-item">
+            <span class="offer-label">Prazo</span>
+            <span class="offer-value">237 meses</span>
+          </div>
+        </div>
+  
+        <div class="comparison-table">
+          <div class="table-header">
+            <span>Crédito</span>
+            <span>Parcela Normal</span>
+            <span>Parcela Reduzida</span>
+            <span>Economia</span>
+          </div>
+          <div class="table-row">
+            <span>R$ 500.000,00</span>
+            <span>R$ 2.450,00</span>
+            <span class="highlight">R$ 2.309,94</span>
+            <span class="economy">R$ 140,06/mês</span>
+          </div>
+          <div class="table-row">
+            <span>R$ 600.000,00</span>
+            <span>R$ 2.940,00</span>
+            <span class="highlight">R$ 2.771,93</span>
+            <span class="economy">R$ 168,07/mês</span>
+          </div>
+          <div class="table-row">
+            <span>R$ 700.000,00</span>
+            <span>R$ 3.430,00</span>
+            <span class="highlight">R$ 2.309,94</span>
+            <span class="economy">R$ 1.120,06/mês</span>
+          </div>
+          <div class="table-row">
+            <span>R$ 800.000,00</span>
+            <span>R$ 3.920,00</span>
+            <span class="highlight">R$ 3.695,90</span>
+            <span class="economy">R$ 224,10/mês</span>
+          </div>
+        </div>
+  
+        <div class="card-highlight">
+          <div class="highlight-icon">✨</div>
+          <p>Parcelas reduzidas até a contemplação - Economia total de até R$ 265.454,22</p>
+        </div>
+      </div>
+  
+      <div class="card-footer">
+        <p class="disclaimer">*Condições válidas até 31/12/2025. Consulte regulamento completo.</p>
+        <button class="consult-button">FALE COM UM ESPECIALISTA</button>
+      </div>
+    </div>
+  </section>
+  </section>
+  <section class="testimonials-luxury-section">
+    <div class="section-header">
+      <h2 class="section-title">Histórias de <span class="highlight">Sucesso</span></h2>
+      <p class="section-subtitle">Clientes que transformaram sonhos em realidade</p>
+    </div>
+  
+    <div class="testimonials-carousel swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Depoimento 1 -->
+        <div class="testimonial-card swiper-slide">
+        <div class="testimonial-header">
+          <div class="testimonial-badge">CONTEMPLADA</div>
+          <img src="../../../assets/images/prova_social1.jpg" alt="Cliente feliz com moto" class="testimonial-image">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"Fechei meu consórcio dia 10 e em apenas 20 dias fui contemplada! Agora é só levar a moto pra fazer vistoria. Isso só aconteceu porque você acreditou!"</p>
+          <div class="testimonial-details">
+            <span class="testimonial-date">Contemplação em 22 dias</span>
+            <span class="testimonial-product">Moto Nova</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Depoimento 2 -->
+      <div class="testimonial-card swiper-slide">
+        <div class="testimonial-header">
+          <div class="testimonial-badge">CONTEMPLADO</div>
+          <img src="../../../assets/images/prova_social2.jpg.jpg" alt="Cliente com carro novo" class="testimonial-image">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"Nem acredito que peguei minha motinha já tão rápido! Agora é só focar no exame. Obrigada por todo incentivo e por tornar esse sonho realidade!"</p>
+          <div class="testimonial-details">
+            <span class="testimonial-date">1ª Assembleia</span>
+            <span class="testimonial-product">Moto 0km</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Depoimento 3 -->
+      <div class="testimonial-card swiper-slide">
+        <div class="testimonial-header">
+          <div class="testimonial-badge">CONTEMPLADO</div>
+          <img src="../../../assets/images/prova_social4.jpg" alt="Cliente feliz" class="testimonial-image">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"Fui contemplado na primeira assembleia! Tudo que planejamos juntos deu certo. Excelente profissional, recomendo 100% quem quer adquirir um consórcio."</p>
+          <div class="testimonial-details">
+            <span class="testimonial-date">1ª Assembleia</span>
+            <span class="testimonial-product">Veículo Novo</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Depoimento 4 -->
+      <div class="testimonial-card swiper-slide">
+        <div class="testimonial-header">
+          <div class="testimonial-badge">CONTEMPLADO</div>
+          <img src="../../../assets/images/prova_social8.jpg" alt="Cliente emocionado" class="testimonial-image">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"Acabei de dobrar o joelho e agradecer a Deus! Obrigado por ter me incentivado no meu sonho e não desistir. Tudo dá certo na hora certa!"</p>
+          <div class="testimonial-details">
+            <span class="testimonial-date">Contemplação Rápida</span>
+            <span class="testimonial-product">SUV 0km</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Depoimento 5 -->
+      <div class="testimonial-card swiper-slide">
+        <div class="testimonial-header">
+          <div class="testimonial-badge">CONTEMPLADA</div>
+          <img src="../../../assets/images/prova_socila5.jpg" alt="Cliente agradecida" class="testimonial-image">
+        </div>
+        <div class="testimonial-content swiper-slide">
+          <p class="testimonial-text">"Te disse que ia dar certo! Obrigada por tudo, pela atenção e por ser essa pessoa maravilhosa que me ajudou a conquistar um sonho de vida."</p>
+          <div class="testimonial-details">
+            <span class="testimonial-date">3 Cotas</span>
+            <span class="testimonial-product">Imóvel Próprio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="testimonial-container">
+        <div class="testimonial-nav">
+          <button class="nav-button" (click)="prevTestimonial()">‹</button>
+          <button class="nav-button" (click)="nextTestimonial()">›</button>
+        </div>
+        
+        <div class="testimonial-content">
+          <div class="testimonial-quote">"{{testimonials[activeTestimonial].quote}}"</div>
+          <div class="testimonial-author">
+            <strong>{{testimonials[activeTestimonial].author}}</strong>, {{testimonials[activeTestimonial].role}}
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2 class="section-title">Contato <span class="highlight">Exclusivo</span></h2>
+          <p class="contact-text">Para clientes selecionados, oferecemos um canal direto com nossa especialista.</p>
+          
+          <div class="contact-details">
+            <div class="detail-item">
+              <span class="detail-icon">✉️</span>
+              <span>contato@consorcioselite.com</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">📱</span>
+              <span>(11) 98765-4321 (WhatsApp)</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">🏢</span>
+              <span>Av. Paulista, 1000 - São Paulo/SP</span>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Seu Nome" class="form-input">
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Seu Melhor E-mail" class="form-input">
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Telefone (WhatsApp)" class="form-input">
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Como podemos ajudar?" class="form-textarea"></textarea>
+          </div>
+          <button type="submit" class="submit-button">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-icon">💎</span>
+          <span class="logo-text">Consórcios Elite</span>
+        </div>
+        
+        <div class="footer-links">
+          <a href="#home">Início</a>
+          <a href="#about">Sobre</a>
+          <a href="#services">Serviços</a>
+          <a href="#contact">Contato</a>
+        </div>
+        
+        <div class="social-links">
+          <a href="#" class="social-icon">Instagram</a>
+          <a href="#" class="social-icon">LinkedIn</a>
+          <a href="#" class="social-icon">WhatsApp</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2023 Consórcios Elite. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </div>
